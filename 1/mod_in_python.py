@@ -1,3 +1,4 @@
+#gets two numbers and prints div and mod of those two
 a = int(input("Type in First Number:"))
 b = int(input("Type in Second Number:"))
 

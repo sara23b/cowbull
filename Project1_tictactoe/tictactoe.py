@@ -65,7 +65,6 @@ def playHumanTurn(board):
             playAITurn(board)
 
 def playAITurn(board):
-    #here goes your code!
     #based on the flowchart, complete this function so we can play the game
     getAIMove(board) #--> you should write this function
     if checkForWin(board):

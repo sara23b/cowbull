@@ -25,11 +25,11 @@ def checkForWin(board):
         return True
     elif board[1] == board[4] and board[1]==board[7] and board[1]!="[]":
         return True
-    elif board[2] == board[5] and board[2]==board[8] and board[4]!="[]":
+    elif board[2] == board[5] and board[2]==board[8] and board[2]!="[]":
         return True
     elif board[3] == board[6] and board[3]==board[9] and board[3]!="[]":
         return True
-    elif board[1] == board[5] and board[1]==board[9] and board[4]!="[]":
+    elif board[1] == board[5] and board[1]==board[9] and board[1]!="[]":
         return True
     elif board[3] == board[7] and board[3]==board[9] and board[3]!="[]":
         return True
@@ -63,10 +63,39 @@ def playHumanTurn(board):
             endGame("Tie")
         else:
             playAITurn(board)
+def getAIMove(board):
+    if board[1] == "[]" :
+        if board[2] == board[3] or board[4] == board[7] or board[5] == board[9] :
+            board[1] = "O"
+    elif board[2] == "[]":
+        if board[5] == board[8] or board[1] == board[3]:
+            board[2] = "O"
+    elif board[3] == "[]":
+        if board[1] == board[2] or board[5] == board[7] or board[6] == board[9]:
+            board[3] = "O"
+    elif board[4] == "[]":
+        if board[1] == board[7] or board[5] == board[6]:
+            board[4] = "O"
+    elif board[5] == "[]":
+        if board[2] == board[8] or board[3] == board[7] or board[1] == board[9] or board[4] == board[6]:
+            board[5] = "O"
+    elif board[6] == "[]":
+        if board[3] == board[9] or board[5] == board[4]:
+            board[6] = "O"
+    elif board[7] == "[]":
+        if board[8] == board[9] or board[4] == board[1] or board[5] == board[3]:
+            board[7] = "O"
+    elif board[8] == "[]":
+        if board[5] == board[2] or board[7] == board[9]:
+            board[8] = "O"
+    elif board[9] == "[]":
+        if board[5] == board[1] or board[6] == board[3] or board[8] == board[7]:
+            board[9] = "O"                                                                
+    else:
+        random = "O"                
 
-def playAITurn(board):
-    #based on the flowchart, complete this function so we can play the game
-    getAIMove(board) #--> you should write this function
+def playAITurn(board):  
+    getAIMove(board)
     if checkForWin(board):
         endGame("Computer")
     else:

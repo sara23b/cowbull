@@ -112,3 +112,5 @@ def startGame():
         playHumanTurn(board)
     else:
         playAITurn(board)
+
+startGame()

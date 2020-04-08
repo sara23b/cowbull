@@ -1,13 +1,24 @@
 
 import random
 
-def compare_numbers(number, user_guess):  
+def finish(GList):
+    number = GList[0] 
+    guesses = GList[1] 
+    gus = GList[2] 
+    print("Game Over!")
+    choice = input("Do you want to play Again?(y/n)")
+    if choice == 'y':
+        startGame()
+
+def compare_numbers(number, gus):  
     cowbull = [0,0] 
-    for i in range(len(number)):
-        if number[i] == user_guess[i]:
+    for i in range(0 , 4):
+        if number[i]== gus[i]:
             cowbull[1]+=1
-        else:
+    for i in number:
+        if i in gus:
             cowbull[0]+=1
+    cowbull[0] = cowbull[0]-cowbull[1]
     return cowbull
 
 
@@ -15,36 +26,36 @@ def check(Glist):
     number = Glist[0] 
     guesses = Glist[1] 
     gus = Glist[2]
-    k = 0
-    while k<5 :
-        cowbullcount = compare_numbers(number,gus)
-        guesses+=1
+    Number = Glist[3]
+    cowbullcount = compare_numbers(number,gus)
+    guesses+=1
 
-        print("You have "+ str(cowbullcount[0]) + " cows, and " + str(cowbullcount[1]) + " bulls.")
+    print("You have "+ str(cowbullcount[0]) + " cows, and " + str(cowbullcount[1]) + " bulls.")
 
-        if cowbullcount[1]==4:
-            playing = False
-            print("You win the game after " + str(guesses) + "! The number was "+str(number))
-            break 
-        else:
-            print("Your guess isn't quite right, try again.")
-        k +=1
+    if cowbullcount[1]==4:
+        playing = False
+        print("You win the game after " + str(guesses) + "! The number was "+str(Number))
+    else:
+        print("Your guess isn't quite right, try again.")
     playturn(Glist) 
 
 
 def playturn(gamelist):
-    number = gamelist[0] 
-    guesses = gamelist[1] 
-    gus = input("guess a 4-digit number:") 
-    Glist = [number, guesses, gus]
+    Number = gamelist[0]
+    number = gamelist[1] 
+    guesses = gamelist[2] 
+    guess = input("guess a 4-digit number:") 
+    gus = [int(x) for x in str(guess)]
+    Glist = [number, guesses, gus, Number]
     check(Glist)
 
 
 
 def startgame():
-    number = '1234' #str(random.randint(1000,9999))# 
+    Number = "1234" #str(random.randint(1000,9999))#
+    number = [int(x) for x in str(Number)]
     guesses = 0 
-    gamelist = [number, guesses]
+    gamelist = [ Number,number, guesses]
     playturn(gamelist)
 
 startgame()

@@ -1,10 +1,7 @@
 
 import random
 
-def finish(GList):
-    number = GList[0] 
-    guesses = GList[1] 
-    gus = GList[2] 
+def finish():
     print("Game Over!")
     choice = input("Do you want to play Again?(y/n)")
     if choice == 'y':
@@ -35,9 +32,11 @@ def check(Glist):
     if cowbullcount[1]==4:
         playing = False
         print("You win the game after " + str(guesses) + "! The number was "+str(Number))
+        finish()
     else:
         print("Your guess isn't quite right, try again.")
-    playturn(Glist) 
+    gamelist = [Number, number, guesses]
+    playturn(gamelist) 
 
 
 def playturn(gamelist):
